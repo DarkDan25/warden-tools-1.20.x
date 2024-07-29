@@ -12,6 +12,7 @@ import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.function.ApplyBonusLootFunction;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
+import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.predicate.item.ItemPredicate;
 import net.trique.wardentools.block.WardenBlocks;
 import net.trique.wardentools.data.WardenItemTagProvider;
@@ -27,7 +28,7 @@ public class ClusterDropDatagen extends FabricBlockLootTableProvider {
                 .apply(ApplyBonusLootFunction.oreDrops(Enchantments.FORTUNE))
                 .conditionally(MatchToolLootCondition.builder(ItemPredicate.Builder.create().tag(WardenItemTagProvider.SCULKHYST_CLUSTER_MAX_HARVESTABLES) ))
                 .alternatively(applyExplosionDecay(block,ItemEntry.builder(item)
-                        .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(1)))))
+                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0,1)))))
         );
     }
 
